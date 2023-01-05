@@ -9,28 +9,19 @@ const profile = document.getElementById('profile')
 // send request to server and get data for input name then call functions to show result
 async function getData(e) {
     console.log("Data getting")
-    let name = nameInput.value;
-    console.log(name)    
+    let name = nameInput.value; 
     e.preventDefault();
     if (checkValidity(name)) {
         try {
-            console.log('Getting result from git')
             let response = await fetch(`https://api.github.com/users/${name}`);
-            console.log(response)
             let obj = await response.json();
             if (response.status != 200) {
+                nameInput.style.color = 'red'
+                nameInput.value = 'User not found! Try again'
                 return Promise.reject(`Request failed with error ${response.status}`);
             }
-            console.log(obj)
+            nameInput.style.color = 'black'
             setData(obj);
-            // let data = await JSON.parse(window.localStorage.getItem(name));
-            // console.log(data);
-            // if (data != null) {
-            //     savedAnswerCard.style.display = "block";
-            //     setSavedAnswer(data);
-            // } else {
-            //     savedAnswerCard.style.display = "none";
-            // }
         } catch (e) {
             console.log(e);
         }
@@ -41,18 +32,13 @@ async function getData(e) {
 
 // show Prediction result to user
 function setData(obj) {
-    console.log('OK lets change')
     nameData = obj.name
     blogData = obj.blog
     locData = obj.location
     profData = obj.avatar_url
     bioData = obj.bio
     gitID = obj.login
-    console.log(nameData)
-    console.log(blogData)
-    console.log(locData)
-    console.log(profData)
-    console.log(bioData)
+    setCookie(nameInput,obj, 1)
     if(nameData != null)
     {
         who.innerHTML = nameData
@@ -77,7 +63,6 @@ function setData(obj) {
     }
     if(profData != null)
     {
-        console.log(profile.src)
         profile.src = profData
         profile.alter = nameData
     }
@@ -104,6 +89,14 @@ function checkValidity(name) {
     return true;
 
 }
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
 
 console.log("Hi samin")
 submitButton.addEventListener('click', getData);
