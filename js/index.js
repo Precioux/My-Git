@@ -1,5 +1,9 @@
 const nameInput = document.getElementById("search");
 const submitButton = document.querySelector('.submit');
+const who = document.getElementById('who')
+// const location = document.getElementById('location')
+// const bio = document.getElementById('bio')
+const profile = document.getElementById('profile')
 
 // send request to server and get data for input name then call functions to show result
 async function getData(e) {
@@ -17,7 +21,7 @@ async function getData(e) {
                 return Promise.reject(`Request failed with error ${response.status}`);
             }
             console.log(obj)
-            // setData(obj);
+            setData(obj);
             // let data = await JSON.parse(window.localStorage.getItem(name));
             // console.log(data);
             // if (data != null) {
@@ -36,19 +40,53 @@ async function getData(e) {
 
 // show Prediction result to user
 function setData(obj) {
-    if (obj.gender == null) {
-        predictionGender.innerHTML = '<span><i class="fas fa-ban"></i></span>';
-        predictionPercent.innerHTML = '<span><i class="fas fa-question"></i></span>';
-        showAlert("Can't Find!");
-    } else {
-        if (obj.gender == "male") {
-            var icon = '<span><i class="fas fa-male"></i><span>';
-        } else if (obj.gender == "female") {
-            var icon = '<span><i class="fas fa-female"></i><span>';
-        }
-        predictionGender.innerHTML = "<span>" + icon + "  " + obj.gender + "</span>";
-        predictionPercent.innerHTML = '<span><i class="fas fa-percent" style="font-size:10px" ></i>  ' + (obj.probability * 100) + '</span>';
+    console.log('OK lets change')
+    nameData = obj.name
+    blogData = obj.blog
+    locData = obj.location
+    profData = obj.avatar_url
+    bioData = obj.bio
+    console.log(nameData)
+    console.log(blogData)
+    console.log(locData)
+    console.log(profData)
+    console.log(bioData)
+    if(nameData != null)
+    {
+        who.innerHTML = nameData
     }
+    // if(blogData != null)
+    // {
+
+    // }
+    // if(locData != null)
+    // {
+    //     location.innerHTML = locData
+    // }
+    if(profData != null)
+    {
+        console.log(profile.src)
+        profile.src = profData
+        profile.alter = nameData
+    }
+    // if(bioData != null)
+    // {
+    //     bio.innerHTML = bioData
+    // }
+    
+    // if (obj.gender == null) {
+    //     predictionGender.innerHTML = '<span><i class="fas fa-ban"></i></span>';
+    //     predictionPercent.innerHTML = '<span><i class="fas fa-question"></i></span>';
+    //     showAlert("Can't Find!");
+    // } else {
+    //     if (obj.gender == "male") {
+    //         var icon = '<span><i class="fas fa-male"></i><span>';
+    //     } else if (obj.gender == "female") {
+    //         var icon = '<span><i class="fas fa-female"></i><span>';
+    //     }
+    //     predictionGender.innerHTML = "<span>" + icon + "  " + obj.gender + "</span>";
+    //     predictionPercent.innerHTML = '<span><i class="fas fa-percent" style="font-size:10px" ></i>  ' + (obj.probability * 100) + '</span>';
+    // }
 }
 
 
