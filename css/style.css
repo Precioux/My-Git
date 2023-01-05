@@ -13,7 +13,7 @@ body {
 */
 
 .container {
-  width: 50%;
+  width: 60%;
   min-height: 60%;
   position: absolute;
   top: 50%;
@@ -25,7 +25,7 @@ body {
   -ms-transform: translate(-50%, -50%);
   background-color: white;
   opacity: 0.8;
-  padding: 5px;
+  padding: 8px;
   z-index: 100;
 
   border-radius: 10px;
@@ -59,8 +59,8 @@ body {
 */
 
 .fieldset {
-  padding: 10px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 15px;
 }
 
 /*
@@ -89,4 +89,8 @@ body {
 */
 .action_result {
   display: none;
+}
+#search-container,
+#button-container {
+  text-align: center;
 }

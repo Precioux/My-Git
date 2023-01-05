@@ -13,47 +13,30 @@
   <body>
     <div class="container">
       <!-- page left part -->
-      <div class="form_card card">
-        <form class="form_card_content">
+      <div class="result_card card">
           <fieldset class="fieldset">
-            <legend class="header">Mr. or Ms.?</legend>
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              maxlength="255"
-              pattern="[A-Za-z ]+"
-              required
-            />
-            <br /><br />
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">Male</label><br />
-            <input type="radio" id="female" name="gender" value="female" />
-            <label for="female">Female</label><br />
-            <br />
-            <button class="submit button">submit</button><br />
-            <button class="save button">save</button>
           </fieldset>
         </form>
         <div class="action_result"></div>
       </div>
       <!-- page right part -->
-      <div class="result_card card">
-        <div class="prediction_card">
+      <div class="from_card card">
+        <form class="from_card_content">
           <fieldset class="fieldset">
-            <legend class="header">Prediction</legend>
-            <div class="prediction_gender"></div>
-            <div class="prediction_percent"></div>
+            <div id="search-container">
+              <input
+                type="text"
+                id="search"
+                maxlength="255"
+                pattern="[A-Za-z ]+"
+                required
+              />
+            </div>
+            <div id="button-container">
+              <button class="submit button">submit</button><br />
+            </div>
           </fieldset>
-        </div>
-        <div class="saved_card">
-          <fieldset class="fieldset">
-            <legend class="header">Saved Answer</legend>
-            <div class="saved_answer_content"></div>
-            <br />
-            <button class="clear button">clear</button>
-          </fieldset>
-        </div>
+        </form>
       </div>
     </div>
     <script src="./js/index.js"></script>
