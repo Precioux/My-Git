@@ -1,8 +1,9 @@
 const nameInput = document.getElementById("search");
 const submitButton = document.querySelector('.submit');
 const who = document.getElementById('who')
-// const location = document.getElementById('location')
-// const bio = document.getElementById('bio')
+const blog = document.querySelector('#list').querySelector('#b').querySelector('#pb').querySelector('#ab')
+const bio = document.querySelector('#list').querySelector('#i').querySelector("#pi")
+const where = document.querySelector('#list').querySelector('#l').querySelector("#pl")
 const profile = document.getElementById('profile')
 
 // send request to server and get data for input name then call functions to show result
@@ -46,6 +47,7 @@ function setData(obj) {
     locData = obj.location
     profData = obj.avatar_url
     bioData = obj.bio
+    gitID = obj.login
     console.log(nameData)
     console.log(blogData)
     console.log(locData)
@@ -55,51 +57,51 @@ function setData(obj) {
     {
         who.innerHTML = nameData
     }
-    // if(blogData != null)
-    // {
-
-    // }
-    // if(locData != null)
-    // {
-    //     location.innerHTML = locData
-    // }
+    else
+    {
+        who.innerHTML = gitID
+    }
+    if(blogData != '')
+    {
+        blog.href = blogData
+        blog.innerHTML = blogData
+    }
+    else
+    {
+        blog.href = "github.com/"+ gitID
+        blog.innerHTML = "github.com/"+ gitID
+    }
+    if(locData != null)
+    {
+        where.innerHTML = locData
+    }
     if(profData != null)
     {
         console.log(profile.src)
         profile.src = profData
         profile.alter = nameData
     }
-    // if(bioData != null)
-    // {
-    //     bio.innerHTML = bioData
-    // }
-    
-    // if (obj.gender == null) {
-    //     predictionGender.innerHTML = '<span><i class="fas fa-ban"></i></span>';
-    //     predictionPercent.innerHTML = '<span><i class="fas fa-question"></i></span>';
-    //     showAlert("Can't Find!");
-    // } else {
-    //     if (obj.gender == "male") {
-    //         var icon = '<span><i class="fas fa-male"></i><span>';
-    //     } else if (obj.gender == "female") {
-    //         var icon = '<span><i class="fas fa-female"></i><span>';
-    //     }
-    //     predictionGender.innerHTML = "<span>" + icon + "  " + obj.gender + "</span>";
-    //     predictionPercent.innerHTML = '<span><i class="fas fa-percent" style="font-size:10px" ></i>  ' + (obj.probability * 100) + '</span>';
-    // }
+    if(bioData != null)
+    {
+        bio.innerHTML = bioData
+    }
+    else
+    {
+        bio.innerHTML = 'Coding...'
+    }
 }
 
 
 // this function check input name validity
 function checkValidity(name) {
-    const regex1 = /[A-Za-z ]+/g;
-    const regex2 = /[0-9\.\-\/]+/g;
-    const foundValid = name.match(regex1);
-    const foundNotValid = name.match(regex2);
-    if (foundNotValid == null && foundValid.length > 0) {
-        return true;
-    }
-    return false;
+    // const regex1 = /[A-Za-z ]+/g;
+    // const regex2 = /[0-9\.\-\/]+/g;
+    // const foundValid = name.match(regex1);
+    // const foundNotValid = name.match(regex2);
+    // if (foundNotValid == null && foundValid.length > 0) {
+    //     return true;
+    // }
+    return true;
 
 }
 
