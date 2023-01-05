@@ -24,7 +24,7 @@ body {
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.75;
   padding: 8px;
   z-index: 100;
 
@@ -90,7 +90,25 @@ body {
 .action_result {
   display: none;
 }
+/*
+    set right card content centered
+*/
 #search-container,
 #button-container {
   text-align: center;
+}
+img {
+  width: 100%;
+}
+/*
+    container
+*/
+.row {
+  display: flex;
+}
+
+/* Create  equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 1px;
 }
