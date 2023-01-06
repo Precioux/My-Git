@@ -5,32 +5,36 @@ const blog = document.querySelector('#list').querySelector('#b').querySelector('
 const bio = document.querySelector('#list').querySelector('#i').querySelector("#pi")
 const where = document.querySelector('#list').querySelector('#l').querySelector("#pl")
 const profile = document.getElementById('profile')
+const Welcome = document.getElementById('welcome')
 
 // send request to server and get data for input name then call functions to show result
 async function getData(e) {
-    console.log("Data getting")
     let name = nameInput.value; 
+    if(checkLocal(name) == false){
     e.preventDefault();
-    if (checkValidity(name)) {
-        try {
+    try {
             let response = await fetch(`https://api.github.com/users/${name}`);
             let obj = await response.json();
             if (response.status != 200) {
                 nameInput.style.color = 'red'
                 nameInput.value = 'User not found! Try again'
                 return Promise.reject(`Request failed with error ${response.status}`);
-            }
+                }
             nameInput.style.color = 'black'
             setData(obj);
+            addLocal(name,JSON.stringify(obj))
         } catch (e) {
             console.log(e);
         }
-    } else {
-        showAlert("Invalid input!");
+    }
+    else
+    {      
+           Welcome.innerHTML="Welcome back "+ name + " !"
+           getLocal(name)
     }
 }
 
-// show Prediction result to user
+// set user data
 function setData(obj) {
     nameData = obj.name
     blogData = obj.blog
@@ -38,7 +42,6 @@ function setData(obj) {
     profData = obj.avatar_url
     bioData = obj.bio
     gitID = obj.login
-    setCookie(nameInput,obj, 1)
     if(nameData != null)
     {
         who.innerHTML = nameData
@@ -74,29 +77,39 @@ function setData(obj) {
     {
         bio.innerHTML = 'Coding...'
     }
-}
-
-
-// this function check input name validity
-function checkValidity(name) {
-    // const regex1 = /[A-Za-z ]+/g;
-    // const regex2 = /[0-9\.\-\/]+/g;
-    // const foundValid = name.match(regex1);
-    // const foundNotValid = name.match(regex2);
-    // if (foundNotValid == null && foundValid.length > 0) {
-    //     return true;
-    // }
-    return true;
 
 }
 
-function setCookie(cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
+//adding to local storage
+function  addLocal(gitID,obj)
+{
+    console.log('adding to local storage')
+    localStorage.setItem(gitID,obj)
+}
 
+//getting data from local storage
+function getLocal(gitID)
+{
+    d = localStorage.getItem(getID)
+    let objData = d.json()
+    setData(objData)
 
-console.log("Hi samin")
+}
+
+//checking local storage
+function checkLocal(gitID)
+{
+    console.log('Checking local storage')
+    x = false
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i)
+        console.log(key)
+        if(key == gitID){
+           x = true
+        }
+      }
+    console.log(x)
+    return x
+}
+console.log("Hi samin");
 submitButton.addEventListener('click', getData);
