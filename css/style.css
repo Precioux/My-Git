@@ -23,7 +23,7 @@ body {
   -moz-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: whitesmoke;
   opacity: 0.75;
   padding: 8px;
   z-index: 100;
@@ -58,7 +58,7 @@ body {
     fieldset styles
 */
 
-.fieldset {
+fieldset {
   padding: 15px;
   border-radius: 15px;
 }
@@ -76,16 +76,11 @@ body {
   border-radius: 10px;
 }
 /*
-    Error section 
-*/
-.action_result {
-  display: none;
-}
-/*
     set right card content centered
 */
 #search-container,
-#button-container {
+#button-container,
+#pi {
   text-align: center;
 }
 /*
@@ -122,4 +117,12 @@ h2 {
 .searchBox {
   padding: 1px;
   width: 20%;
+}
+/*
+  bio box
+*/
+#i {
+  border: 2px solid grey;
+  border-radius: 12px;
+  padding: 5px;
 }
