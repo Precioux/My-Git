@@ -109,22 +109,17 @@ img {
   flex: 50%;
   padding: 1px;
 }
-
+/*
+  h2 setting data
+*/
 h2 {
   padding: 10px;
   text-align: center;
 }
-
+/*
+  search box setting data
+*/
 .searchBox {
   padding: 1px;
   width: 20%;
-}
-.err {
-  background: #ffe6ee;
-  border: 1px solid #b1395f;
-}
-
-.emsg {
-  color: #c12020;
-  font-weight: bold;
 }

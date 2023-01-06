@@ -13,6 +13,7 @@ async function getData(e) {
     if(checkLocal(name) == false){
     e.preventDefault();
     try {
+            Welcome.innerHTML="Welcome!"
             let response = await fetch(`https://api.github.com/users/${name}`);
             let obj = await response.json();
             if (response.status != 200) {
@@ -28,9 +29,15 @@ async function getData(e) {
         }
     }
     else
-    {      
-           Welcome.innerHTML="Welcome back "+ name + " !"
-           getLocal(name)
+    {      e.preventDefault();
+           try {
+                Welcome.innerHTML="Welcome "+ name+" !"
+                getLocal(name)
+               }
+           catch (e) {
+            console.log(e);
+        }
+
     }
 }
 
@@ -83,33 +90,30 @@ function setData(obj) {
 //adding to local storage
 function  addLocal(gitID,obj)
 {
-    console.log('adding to local storage')
     localStorage.setItem(gitID,obj)
 }
 
 //getting data from local storage
 function getLocal(gitID)
 {
-    d = localStorage.getItem(getID)
-    let objData = d.json()
-    setData(objData)
+    objData = localStorage.getItem(gitID)
+
+    const realObj = JSON.parse(objData)
+    setData(realObj)
 
 }
 
 //checking local storage
 function checkLocal(gitID)
 {
-    console.log('Checking local storage')
     x = false
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i)
-        console.log(key)
         if(key == gitID){
            x = true
         }
       }
-    console.log(x)
     return x
 }
-console.log("Hi samin");
 submitButton.addEventListener('click', getData);
+localStorage.clear()
