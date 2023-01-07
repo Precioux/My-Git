@@ -60,8 +60,15 @@ function setData(obj) {
     if(blogData != '')
     {
         console.log(blogData)
-        blog.href = blogData
-        blog.innerHTML = blogData
+        let result = blogData.includes("https://");
+        if(result){
+            blog.href = blogData
+            blog.innerHTML = blogData
+        }
+        else{
+            blog.href = "https://"+ blogData
+            blog.innerHTML = blogData           
+        }
     }
     else
     {
