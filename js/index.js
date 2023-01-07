@@ -64,7 +64,7 @@ function setData(obj) {
     }
     else
     {
-        blog.href = "github.com/"+ gitID
+        blog.href = "https://github.com/"+ gitID
         blog.innerHTML = "github.com/"+ gitID
     }
     if(locData != null)
