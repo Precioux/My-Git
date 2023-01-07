@@ -59,6 +59,7 @@ function setData(obj) {
     }
     if(blogData != '')
     {
+        console.log(blogData)
         blog.href = blogData
         blog.innerHTML = blogData
     }
