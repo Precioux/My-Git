@@ -1,6 +1,7 @@
-This project is a simple website which tries to show user's data after getting his/hers Git Id.
+This project is a simple website that tries to show user's data after getting his/her Git Id.
+
+-> https://precioux.github.io/My-Git/
 
 - Internet Engineering midterm project
-- Under supervision of [Dr.Parham Alvani](https://github.com/1995parham) <br />
-- Amirkabir University of Technology
-- Fall 2022
+- Under the supervision of [Dr.Parham Alvani](https://github.com/1995parham) <br />
+ #### Amirkabir University of Technology - Fall 2022
